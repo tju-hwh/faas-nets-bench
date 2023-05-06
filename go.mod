@@ -1,6 +1,6 @@
 module github.com/openfaas/faas-netes
 
-go 1.17
+go 1.18
 
 require (
 	github.com/go-sql-driver/mysql v1.5.0
@@ -18,6 +18,7 @@ require (
 )
 
 require (
+	cloud.google.com/go v0.104.0 // indirect
 	cloud.google.com/go/compute v1.7.0 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
@@ -28,7 +29,6 @@ require (
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/gofuzz v1.1.0 // indirect
-	github.com/google/uuid v1.3.0 // indirect
 	github.com/googleapis/gnostic v0.5.5 // indirect
 	github.com/imdario/mergo v0.3.7 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
@@ -57,6 +57,7 @@ require (
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
+	gorm.io/gorm v1.24.2 // indirect
 	k8s.io/gengo v0.0.0-20201214224949-b6c5ce23f027 // indirect
 	k8s.io/klog/v2 v2.9.0 // indirect
 	k8s.io/kube-openapi v0.0.0-20210421082810-95288971da7e // indirect
