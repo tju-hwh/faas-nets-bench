@@ -65,7 +65,7 @@ func MakeReplicaUpdater(defaultNamespace string, clientset *kubernetes.Clientset
 
 		deployment, err := clientset.AppsV1().Deployments(lookupNamespace).Get(context.TODO(), functionName, options)
 		//hwh 扩容指定节点
-		deployment.Spec.Template.Spec.NodeName = "kube-node-5"
+		deployment.Spec.Template.Spec.NodeName = "kube-node-7"
 		//hwh
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
@@ -322,8 +322,6 @@ func MakeReplicaUpdater4(defaultNamespace string, clientset *kubernetes.Clientse
 		w.WriteHeader(http.StatusAccepted)
 	}
 }
-
-
 
 // 改动5 指定节点扩容
 func MakeReplicaUpdater5(defaultNamespace string, clientset *kubernetes.Clientset, factory k8s.FunctionFactory) http.HandlerFunc {
