@@ -42,7 +42,6 @@ import (
 	_ "k8s.io/code-generator/cmd/client-gen/generators"
 	// main.go:36:2: import "sigs.k8s.io/controller-tools/cmd/controller-gen" is a program, not an importable package
 	// _ "sigs.k8s.io/controller-tools/cmd/controller-gen"
-
 )
 
 func main() {
@@ -145,11 +144,10 @@ func main() {
 		faasClient:          faasClient,
 	}
 
+	//handlers.Db = InitDB()
+	//defer handlers.Db.Close()
 
-	handlers.Db = InitDB()
-	defer handlers.Db.Close()
-
-	go UpdateSpace()
+	//go UpdateSpace()
 
 	if operator {
 		runOperator(setup, config)
@@ -160,7 +158,7 @@ func main() {
 
 //每秒定时收集相空间、把起始时间记录
 func UpdateSpace() {
-	for{
+	for {
 		fmt.Println("开始计算相空间 ", time.Now().Format("06-01-02 15:04:05"))
 		handlers.Db.Find(&handlers.Nodes)
 		for _, node := range handlers.Nodes {
@@ -173,11 +171,11 @@ func UpdateSpace() {
 				fmt.Println("success", node.Name, node.CpuFloat[2])
 			}
 		}
-		time.Sleep(3*time.Second)
+		time.Sleep(3 * time.Second)
 	}
 }
 
-func InitDB() *gorm.DB{
+func InitDB() *gorm.DB {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 		"root", "123456", "192.168.1.141", "tianxuan")
 	log.Println(dsn)
@@ -185,8 +183,8 @@ func InitDB() *gorm.DB{
 	Db, err := gorm.Open("mysql", dsn)
 	if err != nil {
 		log.Printf("连接到数据库失败%v", err)
-	}else {
-		log.Printf("连接到数据库成功%s","tianxuan")
+	} else {
+		log.Printf("连接到数据库成功%s", "tianxuan")
 		Db.Find(&handlers.Nodes)
 		Db.Find(&handlers.FcLocates)
 		Db.Find(&handlers.Fcs)
@@ -198,8 +196,6 @@ func InitDB() *gorm.DB{
 	}
 	return Db
 }
-
-
 
 type customInformers struct {
 	EndpointsInformer  v1core.EndpointsInformer
